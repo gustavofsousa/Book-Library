@@ -1,13 +1,8 @@
-import mysql.connector
+import sqlite3
 
 class LibraryCRUD:
     def __enter__(self):
-        self.connection = mysql.connector.connect(
-            host = "localhost",
-            user = "servus",
-            password = "newstory",
-            database = "library_GJBP_db"
-        )
+        self.connection = sqlite3.connect("your_library")
         self.cursor = self.connection.cursor()
         self.create_table()
         return self
@@ -29,7 +24,7 @@ class LibraryCRUD:
         """)
 
     def add_book(self, title, author):
-        command = "insert into livros (title, author) values (%s, %s)"
+        command = "insert into livros (title, author) values (?, ?)"
         self.cursor.execute(command, (title, author))
         self.connection.commit()
 
