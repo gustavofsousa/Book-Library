@@ -1,24 +1,32 @@
 import mysql.connector
 
 class LibraryCRUD:
-    def __init__(self):
+    def __enter__(self):
         self.connection = mysql.connector.connect(
             host = "localhost",
-            user = "gusta",
-            password = "123456",
-            database = "db_gjbp"
+            user = "servus",
+            password = "newstory",
+            database = "library_GJBP_db"
         )
         self.cursor = self.connection.cursor()
         self.create_table()
+        return self
 
-    def __del__(self):
+    def __exit__(self, exc_type, exc_value, traceback):
         self.cursor.close()
         self.connection.close()
 
-
-
-
-
+    def create_table(self):
+        self.cursor.execute("""
+            CREATE TABLE IF NOT EXISTS livros (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                title VARCHAR(255) NOT NULL,
+                author varchar(45),
+                pages INT,
+                tag VARCHAR(45),
+                sinopse varchar(255)
+            )
+        """)
 
 
 
@@ -28,5 +36,8 @@ class LibraryCRUD:
 
 # Main
 if __name__ == "__main__":
-    libraryGJBP = LibraryCRUD();
-    print("I create then delete the library")
+    try:
+        with LibraryCRUD() as library:
+            print("Library created with success")
+    except Except as e:
+        print("error: ", str(e))
