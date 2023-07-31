@@ -28,16 +28,22 @@ class LibraryCRUD:
             )
         """)
 
+    def add_book(self, title, author):
+        command = "insert into livros (title, author) values (%s, %s)"
+        self.cursor.execute(command, (title, author))
+        self.connection.commit()
 
-
-
-
-
+    def show_all_books(self):
+        self.cursor.execute("select * from livros")
+        print(self.cursor.fetchall())
 
 # Main
 if __name__ == "__main__":
     try:
         with LibraryCRUD() as library:
             print("Library created with success")
-    except Except as e:
+            library.show_all_books() 
+            library.add_book("The hobbit", "JRR Tolkien")
+            library.show_all_books() 
+    except Exception as e:
         print("error: ", str(e))
