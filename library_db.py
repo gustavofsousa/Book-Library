@@ -38,8 +38,8 @@ class LibraryCRUD:
                 self.update_book()
             elif choice == "5":
                 self.delete_book()
-            # elif choice == "5":
-            #     self.search_book("name", "some writer")
+            elif choice == "6":
+                self.search_book()
             elif choice == "7":
                 exit()
     
@@ -87,3 +87,18 @@ class LibraryCRUD:
         command = "delete from livros where id = ?"
         self.cursor.execute(command, (id_delete,))
         self.connection.commit()
+
+    def search_book(self):
+        book_name = input("Type the book's title to search in database: ")
+        search_term = '%' + book_name.lower() + '%'
+
+        command = "select * from livros where lower(title) like ?"
+        self.cursor.execute(command,(search_term,))
+        search_results = self.cursor.fetchall()
+
+        if (search_results):
+            print("\nResults found:")
+            for book in search_results:
+                print(book)
+        else:
+            print("\nNo matching books found.")
