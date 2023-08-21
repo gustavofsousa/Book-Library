@@ -36,9 +36,11 @@ class LibraryCRUD:
                 self.add_complete_book()
             # elif choice == "4":
             #     self.update_book("name", "some writer")
+            elif choice == "5":
+                self.delete_book()
             # elif choice == "5":
             #     self.search_book("name", "some writer")
-            elif choice == "6":
+            elif choice == "7":
                 exit()
     
 # COMMANDS OF LIBRARY
@@ -65,4 +67,10 @@ class LibraryCRUD:
 
         command = "insert into livros (title, author, pages, tag, sinopse) values (?, ?, ?, ?, ?)"
         self.cursor.execute(command, (title, author, pages, tag, sinopse))
+        self.connection.commit()
+
+    def delete_book(self):
+        id_delete = input("Type the number's book you want to delete: ")
+        command = "delete from livros where id = ?"
+        self.cursor.execute(command, (id_delete,))
         self.connection.commit()
