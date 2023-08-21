@@ -34,8 +34,8 @@ class LibraryCRUD:
                 self.add_simple_book()
             elif choice == "3":
                 self.add_complete_book()
-            # elif choice == "4":
-            #     self.update_book("name", "some writer")
+            elif choice == "4":
+                self.update_book()
             elif choice == "5":
                 self.delete_book()
             # elif choice == "5":
@@ -54,6 +54,7 @@ class LibraryCRUD:
     def add_simple_book(self):
         title = input("Type the books's title: ")
         author = input("Type the books's author: ")
+
         command = "insert into livros (title, author) values (?, ?)"
         self.cursor.execute(command, (title, author))
         self.connection.commit()
@@ -67,6 +68,18 @@ class LibraryCRUD:
 
         command = "insert into livros (title, author, pages, tag, sinopse) values (?, ?, ?, ?, ?)"
         self.cursor.execute(command, (title, author, pages, tag, sinopse))
+        self.connection.commit()
+
+    def update_book(self):
+        book_id = input("Type the number's book: ")
+        title = input("Type the books's title: ")
+        author = input("Type the books's author: ")
+        pages = input("Type the books's page: ")
+        tag = input("Type the books's tag(theme): ")
+        sinopse = input("Type the books's sinopse: ")
+
+        command = "UPDATE livros SET title = ?, author = ?, pages = ?, tag = ?, sinopse = ? WHERE id = ?"
+        self.cursor.execute(command, (title, author, pages, tag, sinopse, book_id))
         self.connection.commit()
 
     def delete_book(self):
