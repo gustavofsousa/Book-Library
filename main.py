@@ -14,7 +14,7 @@ class LibraryCRUD:
     def create_table(self):
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS livros (
-                id INT AUTO_INCREMENT PRIMARY KEY,
+                id INTEGER PRIMARY KEY,
                 title VARCHAR(255) NOT NULL,
                 author varchar(45),
                 pages INT,
@@ -30,7 +30,9 @@ class LibraryCRUD:
 
     def show_all_books(self):
         self.cursor.execute("select * from livros")
-        print(self.cursor.fetchall())
+        all_books = self.cursor.fetchall()
+        for books in all_books:
+            print (books)
 
     def choose_action(self, choice):
         if choice == "1":
