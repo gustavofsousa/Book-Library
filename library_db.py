@@ -31,9 +31,9 @@ class LibraryCRUD:
             if choice == "1":
                 self.show_all_books()
             elif choice == "2":
-                self.add_book("name", "some writer")
+                self.add_simple_book()
             elif choice == "3":
-                self.add_book("name", "some writer")
+                self.add_complete_book()
             # elif choice == "4":
             #     self.update_book("name", "some writer")
             # elif choice == "5":
@@ -45,11 +45,24 @@ class LibraryCRUD:
     def show_all_books(self):
         self.cursor.execute("select * from livros")
         all_books = self.cursor.fetchall()
+        print()
         for books in all_books:
             print(books)
 
-    def add_book(self, title, author):
+    def add_simple_book(self):
+        title = input("Type the books's title: ")
+        author = input("Type the books's author: ")
         command = "insert into livros (title, author) values (?, ?)"
         self.cursor.execute(command, (title, author))
         self.connection.commit()
 
+    def add_complete_book(self):
+        title = input("Type the books's title: ")
+        author = input("Type the books's author: ")
+        pages = input("Type the books's page: ")
+        tag = input("Type the books's tag(theme): ")
+        sinopse = input("Type the books's sinopse: ")
+
+        command = "insert into livros (title, author, pages, tag, sinopse) values (?, ?, ?, ?, ?)"
+        self.cursor.execute(command, (title, author, pages, tag, sinopse))
+        self.connection.commit()

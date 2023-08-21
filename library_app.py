@@ -16,7 +16,6 @@ class LibraryApp:
         choice = input("Type the desirable number: ")
         self.library_db.execute_action(choice)
 
-#
 # Main
 if __name__ == "__main__":
     try:
