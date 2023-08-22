@@ -31,7 +31,7 @@ Contributions are welcome! Feel free to open issues and submit pull requests to 
 ## Contact
 
 If you have any questions, feel free to contact me:
-- Name: !(Gustavo F Sousa)[https://github.com/gustavofsousa]
+- Name: ![Gustavo F Sousa](https://github.com/gustavofsousa)
 - Email: gfsousa42@gmail.com
 - Linkedin: ![@gustavofsousa](https://www.linkedin.com/in/gustavofsousa/)
 
