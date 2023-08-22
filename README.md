@@ -25,12 +25,13 @@ To run the project, follow these steps:
 
 ## Contributing
 
+Thanks to ![@AWDev489](https://github.com/AWDev489) for contributing.
 Contributions are welcome! Feel free to open issues and submit pull requests to improve the project.
 
 ## Contact
 
-If you have any questions, feel free to contact the project maintainer:
-- Name: Gustavo F Sousa
+If you have any questions, feel free to contact me:
+- Name: !(Gustavo F Sousa)[https://github.com/gustavofsousa]
 - Email: gfsousa42@gmail.com
 - Linkedin: ![@gustavofsousa](https://www.linkedin.com/in/gustavofsousa/)
 
