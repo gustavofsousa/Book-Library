@@ -38,6 +38,7 @@ class LibraryCRUD:
                 self.update_book()
             elif choice == "5":
                 self.delete_book()
+                self.update_id_seqence()
             elif choice == "6":
                 self.search_book()
             elif choice == "7":
@@ -87,6 +88,17 @@ class LibraryCRUD:
         command = "delete from livros where id = ?"
         self.cursor.execute(command, (id_delete,))
         self.connection.commit()
+
+    def update_id_seqence(self):
+        self.cursor.execute("SELECT id FROM livros ORDER BY id")
+        rows = self.cursor.fetchall()
+    
+        current_id = 1
+        for row in rows:
+            if row[0] != current_id:
+                self.cursor.execute("UPDATE livros SET id = ? WHERE id = ?", (current_id, row[0]))
+                self.connection.commit()
+            current_id += 1
 
     def search_book(self):
         book_name = input("Type the book's title to search in database: ")
